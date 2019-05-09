@@ -1850,6 +1850,15 @@ function getUserDescription(user) {
                     el.innerHTML = el.innerHTML == 'block' ? 'unblock' : 'block';
             })
         }))
+        .append($('<a class="button">' + (user.is_muted ? 'unmute' : 'mute') + '</a>').click(function () {
+            var el = this;
+            Api(el.innerHTML, { // mute or unmute
+                user_id: user.id
+            }, function (r) {
+                if (r.success)
+                    el.innerHTML = el.innerHTML == 'mute' ? 'unmute' : 'mute';
+            })
+        }))
         .append('<div style="clear:both"/>');
 }
 function setSet(key, value) {
